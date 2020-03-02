@@ -52,6 +52,8 @@
                     <th>ID</th>
                     <th>Address</th>
                     <th>Comment</th>
+                    <th>Call back</th>
+                    <th>Payment</th>
                     <th>User id</th>
                 </tr>
                 <?php
@@ -64,6 +66,8 @@
                         echo '<td>' . $row['id'] . '</td>';
                         echo '<td>' . $row['address'] . '</td>';
                         echo '<td>' . $row['comment'] . '</td>';
+                        echo '<td>' . $row['call_back'] . '</td>';
+                        echo '<td>' . $row['payment'] . '</td>';
                         echo '<td>' . $row['user_id'] . '</td>';
                         echo '</tr>';
                     }
