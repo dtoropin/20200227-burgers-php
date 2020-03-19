@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="../css/main.min.css">
+    <link rel="stylesheet" href="../css/admin.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <ul class="main__tabs">
+        <li class="active">Users</li>
+        <li>Orders</li>
+    </ul>
+    <div class="main__text">
+        <div class="active">
+            <h3>Users</h3>
+            <table class="main__table">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>e-mail</th>
+                    <th>Phone</th>
+                    <th>Orders</th>
+                </tr>
+                {% block users %}{% endblock %}
+            </table>
+        </div>
+        <div>
+            <h3>Orders</h3>
+            <table class="main__table">
+                <tr>
+                    <th>ID</th>
+                    <th>Address</th>
+                    <th>Comment</th>
+                    <th>Call back</th>
+                    <th>Payment</th>
+                    <th>User id</th>
+                </tr>
+                {% block orders %}{% endblock %}
+            </table>
+        </div>
+    </div><!-- end main__text -->
+</div>
+
+<script src="../js/vendors.min.js"></script>
+<script src="../js/admin.min.js"></script>
+</body>
+</html>

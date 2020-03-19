@@ -1,6 +1,9 @@
 <?php
 
-$pdo = new PDO('sqlite:../data/burgers.sqlite');
+require_once '../vendor/autoload.php';
+require_once './Email_Send.php';
+
+$pdo = new \PDO('sqlite:../data/burgers.sqlite');
 
 if (empty($_POST)) {
     // redirect на index.php
@@ -22,7 +25,7 @@ $callback = $_POST['callback'] ? '' : $phone;
 
 $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
 $stmt->execute(array($email));
-$result = $stmt->fetch(PDO::FETCH_LAZY);
+$result = $stmt->fetch(\PDO::FETCH_LAZY);
 $count = $result['orders'] + 1;
 
 if (isset($result['email'])) {
@@ -35,6 +38,9 @@ if (isset($result['email'])) {
     $stmt = $pdo->prepare('INSERT INTO users (email, phone, name, orders) VALUES (?, ?, ?, ?)');
     $stmt->execute(array($email, $phone, $name, $count));
     $userID = $pdo->lastInsertId();
+
+    $sendMail = new Email_Send();
+    $sendMail->send($email, 'Спасибо за регистрацию на сайте burgers.ru! :)');
 }
 
 // Запись заказа в БД - id?
